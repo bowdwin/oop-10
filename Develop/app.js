@@ -34,11 +34,13 @@ inquirer
 const typeOfEmployee = (choice) => {
   console.log(choice);
   const choiceSelected = choice.typeOfTeamMem;
+  console.log(choiceSelected, "choice selected");
+
   if (choiceSelected === "Engineer") {
     //do something
 
     console.log("engineer was selected");
-    selectedEngineer(engineer);
+    selectedEngineer(choiceSelected);
   } else if (choice === "Intern") {
     //do something
   } else if (choice === "Manager") {
@@ -48,8 +50,36 @@ const typeOfEmployee = (choice) => {
   }
 };
 
-const selectedEngineer = (engineer) => {
+const selectedEngineer = (choiceSelected) => {
   console.log("selectedEngConstructor");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: `Enter name for ${choiceSelected}`,
+        name: "name",
+      },
+      {
+        type: "input",
+        message: `Enter id for ${choiceSelected}`,
+        name: "id",
+      },
+      {
+        type: "input",
+        message: `Enter email for ${choiceSelected}`,
+        name: "email",
+      },
+      {
+        type: "input",
+        message: `Enter github username for ${choiceSelected}`,
+        name: "github",
+      },
+    ])
+    .then((choice) => {
+      console.log(choice);
+      // choice = this.choice;
+      // typeOfEmployee(choice);
+    });
   //do something
 };
 // After the user has input all employees desired, call the `render` function (required
