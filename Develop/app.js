@@ -20,12 +20,38 @@ inquirer
   .prompt([
     {
       type: "list",
+      message: "please select a team member to add",
       name: "typeOfTeamMem",
-      choices: ["Engineer", "Intern", "Manager"],
+      choices: ["Engineer", "Intern", "Manager", "don't add team members"],
     },
   ])
-  .then((choice) => {});
+  .then((choice) => {
+    // choice = this.choice;
+    console.log(choice);
+    typeOfEmployee(choice);
+  });
 
+const typeOfEmployee = (choice) => {
+  console.log(choice);
+  const choiceSelected = choice.typeOfTeamMem;
+  if (choiceSelected === "Engineer") {
+    //do something
+
+    console.log("engineer was selected");
+    selectedEngineer(engineer);
+  } else if (choice === "Intern") {
+    //do something
+  } else if (choice === "Manager") {
+    //do something
+  } else {
+    //end
+  }
+};
+
+const selectedEngineer = (engineer) => {
+  console.log("selectedEngConstructor");
+  //do something
+};
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
