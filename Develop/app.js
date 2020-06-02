@@ -17,6 +17,7 @@ const render = require("./lib/htmlRenderer");
 const teamMembers = [];
 
 inquirer
+  //prompt user to select who to add
   .prompt([
     {
       type: "list",
@@ -26,7 +27,6 @@ inquirer
     },
   ])
   .then((choice) => {
-    // choice = this.choice;
     console.log(choice);
     typeOfEmployee(choice);
   });
@@ -41,11 +41,16 @@ const typeOfEmployee = (choice) => {
 
     console.log("engineer was selected");
     selectedEngineer(choiceSelected);
-  } else if (choice === "Intern") {
+  } else if (choiceSelected === "Intern") {
     //do something
-  } else if (choice === "Manager") {
+    console.log("else if selected for intern");
+    selectedIntern(choiceSelected);
+  } else if (choiceSelected === "Manager") {
     //do something
+    selectedManager(choiceSelected);
+    console.log("else if manager was selected");
   } else {
+    console.log("else was selected");
     //end
   }
 };
@@ -75,13 +80,79 @@ const selectedEngineer = (choiceSelected) => {
         name: "github",
       },
     ])
-    .then((choice) => {
-      console.log(choice);
+    .then((engChoice) => {
+      console.log(engChoice);
       // choice = this.choice;
       // typeOfEmployee(choice);
     });
   //do something
 };
+const selectedIntern = (choiceSelected) => {
+  console.log("selectedEngConstructor");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: `Enter name for ${choiceSelected}`,
+        name: "name",
+      },
+      {
+        type: "input",
+        message: `Enter id for ${choiceSelected}`,
+        name: "id",
+      },
+      {
+        type: "input",
+        message: `Enter email for ${choiceSelected}`,
+        name: "email",
+      },
+      {
+        type: "input",
+        message: `Enter the school that the ${choiceSelected} is attending`,
+        name: "github",
+      },
+    ])
+    .then((intChoice) => {
+      console.log(intChoice);
+      // choice = this.choice;
+      // typeOfEmployee(choice);
+    });
+  //do something
+};
+
+const selectedManager = (choiceSelected) => {
+  console.log("selectedEngConstructor");
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: `Enter name for ${choiceSelected}`,
+        name: "name",
+      },
+      {
+        type: "input",
+        message: `Enter id for ${choiceSelected}`,
+        name: "id",
+      },
+      {
+        type: "input",
+        message: `Enter email for ${choiceSelected}`,
+        name: "email",
+      },
+      {
+        type: "input",
+        message: `Enter office number for ${choiceSelected}`,
+        name: "officenumber",
+      },
+    ])
+    .then((engChoice) => {
+      console.log(engChoice);
+      // choice = this.choice;
+      // typeOfEmployee(choice);
+    });
+  //do something
+};
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
