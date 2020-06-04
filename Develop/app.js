@@ -82,6 +82,7 @@ const selectedEngineer = (choiceSelected) => {
     ])
     .then((engChoice) => {
       console.log(engChoice);
+      console.log("right after engineer choice");
       // choice = this.choice;
       // typeOfEmployee(choice);
     });
