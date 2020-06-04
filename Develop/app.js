@@ -16,20 +16,22 @@ const render = require("./lib/htmlRenderer");
 //will store all team members
 const teamMembers = [];
 
-inquirer
-  //prompt user to select who to add
-  .prompt([
-    {
-      type: "list",
-      message: "please select a team member to add",
-      name: "typeOfTeamMem",
-      choices: ["Engineer", "Intern", "Manager", "don't add team members"],
-    },
-  ])
-  .then((choice) => {
-    console.log(choice);
-    typeOfEmployee(choice);
-  });
+const addTeamMember = () => {
+  inquirer
+    //prompt user to select who to add
+    .prompt([
+      {
+        type: "list",
+        message: "please select a team member to add",
+        name: "typeOfTeamMem",
+        choices: ["Engineer", "Intern", "Manager", "don't add team members"],
+      },
+    ])
+    .then((choice) => {
+      console.log(choice);
+      typeOfEmployee(choice);
+    });
+};
 
 const typeOfEmployee = (choice) => {
   console.log(choice);
@@ -54,6 +56,8 @@ const typeOfEmployee = (choice) => {
     //end
   }
 };
+//call addTeamMember for inistial call prompt to add team member
+addTeamMember();
 
 const selectedEngineer = (choiceSelected) => {
   console.log("selectedEngConstructor");
@@ -94,6 +98,7 @@ const selectedEngineer = (choiceSelected) => {
       // choice = this.choice;
       // typeOfEmployee(choice);
       console.log(teamMembers, "this is tema member push array");
+      addMoreTeamMembers();
     });
   //do something
 };
@@ -167,6 +172,24 @@ const selectedManager = (choiceSelected) => {
       // typeOfEmployee(choice);
     });
   //do something
+};
+
+const addMoreTeamMembers = () => {
+  inquirer
+    //prompt user to select who to add
+    .prompt([
+      {
+        type: "list",
+        message: "Would you like to add another Team Member?",
+        name: "addAnotherTeam",
+        choices: ["Yes", "No"],
+      },
+    ])
+    .then((choice) => {
+      console.log(choice);
+      //add more team mmebers function, then after console.log(choice); is selected
+      addTeamMember();
+    });
 };
 
 // After the user has input all employees desired, call the `render` function (required
