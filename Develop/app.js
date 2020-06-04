@@ -119,13 +119,19 @@ const selectedIntern = (choiceSelected) => {
       {
         type: "input",
         message: `Enter the school that the ${choiceSelected} is attending`,
-        name: "github",
+        name: "school",
       },
     ])
     .then((intChoice) => {
       console.log(intChoice);
-      // choice = this.choice;
-      // typeOfEmployee(choice);
+      const newIntern = new Intern(
+        intChoice.name,
+        intChoice.id,
+        intChoice.email,
+        intChoice.school
+      );
+      teamMembers.push(newIntern);
+      console.log(teamMembers);
     });
   //do something
 };
