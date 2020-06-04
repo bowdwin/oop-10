@@ -83,8 +83,17 @@ const selectedEngineer = (choiceSelected) => {
     .then((engChoice) => {
       console.log(engChoice);
       console.log("right after engineer choice");
+      //create a new engineer and pass all the questions answered from above to class
+      const newEngineer = new Engineer(
+        engChoice.name,
+        engChoice.id,
+        engChoice.email,
+        engChoice.github
+      );
+      teamMembers.push(newEngineer);
       // choice = this.choice;
       // typeOfEmployee(choice);
+      console.log(teamMembers, "this is tema member push array");
     });
   //do something
 };

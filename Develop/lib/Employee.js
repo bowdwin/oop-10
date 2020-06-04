@@ -7,8 +7,20 @@ class Employee {
     this.email = email;
   }
   //create a method
-  user() {
-    console.log(`${this.name} is the name`);
+  getName() {
+    return this.name;
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  getEmail() {
+    return this.email;
+  }
+
+  getRole() {
+    return "Employee";
   }
 }
 
