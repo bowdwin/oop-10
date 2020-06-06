@@ -196,12 +196,29 @@ const addMoreTeamMembers = () => {
       },
     ])
     .then((choice) => {
-      console.log(choice);
+      console.log(choice, "console log of choice after .then add team");
+      console.log(choice.addAnotherTeam, "console log of choice.choices");
+      if (choice.addAnotherTeam === "No") {
+        //call render html
+        renderHTML();
+      } else {
+        console.log("else selected before add team members");
+        addTeamMember();
+      }
+
       //add more team mmebers function, then after console.log(choice); is selected
-      addTeamMember();
     });
 };
 
+const renderHTML = () => {
+  let html = render(teamMembers);
+  fs.writeFile(outputPath, html, (err) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("Success writing team.html");
+  });
+};
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
