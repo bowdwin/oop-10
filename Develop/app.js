@@ -24,7 +24,7 @@ const addTeamMember = () => {
         type: "list",
         message: "please select a team member to add",
         name: "typeOfTeamMem",
-        choices: ["Engineer", "Intern", "Manager", "don't add team members"],
+        choices: ["Engineer", "Intern", "Manager"],
       },
     ])
     .then((choice) => {
@@ -45,12 +45,12 @@ const typeOfEmployee = (choice) => {
     selectedEngineer(choiceSelected);
   } else if (choiceSelected === "Intern") {
     //do something
-    console.log("else if selected for intern");
+    // console.log("else if selected for intern");
     selectedIntern(choiceSelected);
   } else if (choiceSelected === "Manager") {
     //do something
     selectedManager(choiceSelected);
-    console.log("else if manager was selected");
+    // console.log("else if manager was selected");
   } else {
     console.log("else was selected");
     //end
@@ -143,7 +143,7 @@ const selectedIntern = (choiceSelected) => {
 };
 
 const selectedManager = (choiceSelected) => {
-  console.log("selectedEngConstructor");
+  console.log("Selected Manager Construtor");
   inquirer
     .prompt([
       {
