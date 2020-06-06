@@ -137,6 +137,7 @@ const selectedIntern = (choiceSelected) => {
       );
       teamMembers.push(newIntern);
       console.log(teamMembers);
+      addMoreTeamMembers();
     });
   //do something
 };
@@ -163,13 +164,22 @@ const selectedManager = (choiceSelected) => {
       {
         type: "input",
         message: `Enter office number for ${choiceSelected}`,
-        name: "officenumber",
+        name: "officeNumber",
       },
     ])
-    .then((engChoice) => {
-      console.log(engChoice);
-      // choice = this.choice;
-      // typeOfEmployee(choice);
+    .then((manChoice) => {
+      console.log(manChoice);
+      const newManager = new Manager(
+        manChoice.name,
+        manChoice.id,
+        manChoice.email,
+        manChoice.officeNumber
+      );
+      console.log(newManager.officeNumber);
+      console.log("after manager office number");
+      teamMembers.push(newManager);
+      console.log(teamMembers);
+      addMoreTeamMembers();
     });
   //do something
 };

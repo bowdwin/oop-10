@@ -14,6 +14,8 @@ class Intern extends Employee {
   }
 
   getSchool() {
+    console.log(this.school);
+    console.log("after school this.school in js");
     return this.school;
   }
 
