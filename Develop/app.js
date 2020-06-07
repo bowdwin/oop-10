@@ -203,7 +203,7 @@ const addMoreTeamMembers = () => {
           renderHTML();
           //else ask them to add a manager
         } else {
-          console.log("please add a Manager");
+          console.log("Please add a Manager");
         }
       } else {
         addTeamMember();
