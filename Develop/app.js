@@ -217,6 +217,6 @@ const renderHTML = () => {
     if (err) {
       return console.log(err);
     }
-    console.log("Success writing team.html");
+    console.log("Successfully created team.html in output folder");
   });
 };
