@@ -7,6 +7,7 @@ const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
+let managerWasAdded = false;
 
 const render = require("./lib/htmlRenderer");
 
@@ -17,15 +18,19 @@ const render = require("./lib/htmlRenderer");
 const teamMembers = [];
 
 // add team members
-const addTeamMember = () => {
+
+const addManager = () => {
   inquirer
     //prompt user to select who to add
     .prompt([
       {
         type: "list",
-        message: "please select a team member to add",
+        message: `Welcome to the team builder console app that will display the team to a web page.
+
+      Please start by hitting enter on Manager selection to start building
+          `,
         name: "typeOfTeamMem",
-        choices: ["Engineer", "Intern", "Manager"],
+        choices: ["Manager"],
       },
     ])
     .then((choice) => {
@@ -37,16 +42,38 @@ const addTeamMember = () => {
 const typeOfEmployee = (choice) => {
   const choiceSelected = choice.typeOfTeamMem;
 
-  if (choiceSelected === "Engineer") {
-    selectedEngineer(choiceSelected);
+  if (choiceSelected === "Manager" && managerWasAdded === false) {
+    selectedManager(choiceSelected);
+    managerWasAdded = true;
   } else if (choiceSelected === "Intern") {
     selectedIntern(choiceSelected);
-  } else if (choiceSelected === "Manager") {
-    selectedManager(choiceSelected);
+  } else if (choiceSelected === "Engineer") {
+    selectedEngineer(choiceSelected);
+  } else {
+    console.log(
+      "there was an error in you applications, eng, intern or manager wasn't selected"
+    );
   }
 };
+const addTeamMember = () => {
+  inquirer
+    //prompt user to select who to add
+    .prompt([
+      {
+        type: "list",
+        message: "Select Engineer or Intern below to add more team members",
+        name: "typeOfTeamMem",
+        choices: ["Engineer", "Intern"],
+      },
+    ])
+    .then((choice) => {
+      //call function and pass choice either eng intern or manager
+      typeOfEmployee(choice);
+    });
+};
 //call addTeamMember for inistial call prompt to add team member
-addTeamMember();
+// addTeamMember();
+addManager();
 
 const selectedEngineer = (choiceSelected) => {
   inquirer
@@ -164,15 +191,20 @@ const addMoreTeamMembers = () => {
     .prompt([
       {
         type: "list",
-        message: "Would you like to add another Team Member?",
+        message: "Would you like to add another team member?",
         name: "addAnotherTeam",
         choices: ["Yes", "No"],
       },
     ])
     .then((choice) => {
       if (choice.addAnotherTeam === "No") {
-        //call render html
-        renderHTML();
+        //call render html if they added a manager
+        if (managerWasAdded === true) {
+          renderHTML();
+          //else ask them to add a manager
+        } else {
+          console.log("please add a Manager");
+        }
       } else {
         addTeamMember();
       }
