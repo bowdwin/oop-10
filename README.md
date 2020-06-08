@@ -24,7 +24,7 @@ Team Builder
 
 ## GIF shot running team builder, output, and then tests at end
 
-![](assets/oopGIF.gif)
+![](./assets/oopGIF.gif)
 
 # Video can also be found below
 
